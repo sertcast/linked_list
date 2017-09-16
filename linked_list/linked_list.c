@@ -7,30 +7,30 @@
 //
 
 #include "linked_list.h"
-struct node *create_node(){
-    struct node *newNode = (struct node*)malloc(sizeof(struct node));
+my_list *create_node(){
+    my_list *newNode = (my_list*)malloc(sizeof(my_list));
     newNode->next = NULL;
     newNode->prev = NULL;
     newNode->added_value = false;
     newNode->value = 0;
     return newNode;
 }
-struct node *create_list(){
+my_list *create_list(){
     return create_node();
 }
-struct node *go_end(struct node *the_list){
-    struct node *current = the_list;
+my_list *go_end(my_list *the_list){
+    my_list *current = the_list;
     while(current->next != NULL){
         current = current->next;
     }
     return current;
 }
-void change_value(struct node *the_node, int value){
+void change_value(my_list *the_node, int value){
     the_node->value = value;
     the_node->added_value = true;
 }
-void print_list(struct node *list){
-    struct node *current = list;
+void print_list(my_list *list){
+    my_list *current = list;
     if(current->added_value){
         printf("%d\n", current->value);
         while(current->next != NULL){
@@ -39,10 +39,10 @@ void print_list(struct node *list){
         }
     }
 }
-void append_list(struct node *the_list,int value){
-    struct node *current = go_end(the_list);
+void append_list(my_list *the_list,int value){
+    my_list *current = go_end(the_list);
     if(current->added_value){
-        struct node *newNode = create_node();
+        my_list *newNode = create_node();
         current->next = newNode;
         newNode->prev = current;
         change_value(newNode,value);
@@ -51,8 +51,8 @@ void append_list(struct node *the_list,int value){
         change_value(current,value);
     }
 }
-struct node *go_value(struct node *list, int place){
-    struct node *current = list;
+my_list *go_value(my_list *list, int place){
+    my_list *current = list;
     int i = 0;
     for(i = 0; i < place; i++){
         if(current->next != NULL){

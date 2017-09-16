@@ -10,7 +10,7 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    struct node *list = create_list();
+    my_list *list = create_list();
     append_list(list, 2);
     append_list(list, 4);
     append_list(list, 5);

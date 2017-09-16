@@ -16,17 +16,18 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-struct node {
+struct my_list {
     int value;
-    struct node *next, *prev;
+    struct my_list *next, *prev;
     bool added_value;
 };
+typedef struct my_list my_list;
 
-struct node *create_list();
-void print_list(struct node *list);
-void change_value(struct node *the_node, int value);
-void append_list(struct node *the_list,int value);
-struct node *go_value(struct node *list, int place);
+my_list *create_list();
+void print_list(my_list *list);
+void change_value(my_list *the_node, int value);
+void append_list(my_list *the_list,int value);
+my_list *go_value(my_list *list, int place);
 
 
 #endif /* linked_list_h */
