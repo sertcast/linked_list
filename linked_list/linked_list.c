@@ -18,12 +18,28 @@ my_list *create_node(){
 my_list *create_list(){
     return create_node();
 }
+
 my_list *go_end(my_list *the_list){
     my_list *current = the_list;
     while(current->next != NULL){
         current = current->next;
     }
     return current;
+}
+void free_node(my_list *the_node){
+    the_node->next = NULL;
+    the_node->prev = NULL;
+    the_node->value = 0;
+    the_node->added_value = false;
+    free(the_node);
+}
+void free_list(my_list *the_list){
+    my_list *current = (go_end(the_list))->prev;
+    while(current->prev != NULL){
+        free_node(current->next);
+        current = current->prev;
+    }
+    free_node(current);
 }
 void change_value(my_list *the_node, int value){
     the_node->value = value;
@@ -59,11 +75,50 @@ my_list *go_value(my_list *list, int place){
             current = current->next;
         }else{
             printf("There is no value in the place you want.\n");
-            return current;
+            exit(1);
         }
     }
     return current;
 }
+void insert_list(my_list *list, int value, int place){
+    my_list *current = go_value(list, place);
+
+    if(current->prev == NULL){
+        my_list *nextNode = create_node();
+        nextNode->next = current->next;
+        nextNode->prev = current;
+        change_value(nextNode, current->value);
+        current->next = nextNode;
+        change_value(current, value);
+        
+    }else{
+        my_list *newNode = create_node();
+        
+        newNode->next = current;
+        newNode->prev = current->prev;
+        change_value(newNode, value);
+        current->prev->next = newNode;
+        current->prev = newNode;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

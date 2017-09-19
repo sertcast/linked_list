@@ -15,10 +15,8 @@ int main(int argc, const char * argv[]) {
     append_list(list, 4);
     append_list(list, 5);
     append_list(list, 6);
-    append_list(list, 9);
-    //print_list(list);
+    insert_list(list, 1, 4);
+    print_list(list);
     
-
-      
     return 0;
 }
