@@ -7,6 +7,7 @@
 //
 
 #include "linked_list.h"
+//creates a node
 my_list *create_node(){
     my_list *newNode = (my_list*)malloc(sizeof(my_list));
     newNode->next = NULL;
@@ -15,10 +16,11 @@ my_list *create_node(){
     newNode->value = 0;
     return newNode;
 }
+//creates a list
 my_list *create_list(){
     return create_node();
 }
-
+//returns the node that is at the end of the list
 my_list *go_end(my_list *the_list){
     my_list *current = the_list;
     while(current->next != NULL){
@@ -26,6 +28,7 @@ my_list *go_end(my_list *the_list){
     }
     return current;
 }
+//removes the node from memory
 void free_node(my_list *the_node){
     the_node->next = NULL;
     the_node->prev = NULL;
@@ -33,18 +36,25 @@ void free_node(my_list *the_node){
     the_node->added_value = false;
     free(the_node);
 }
+//removes the list from memory
 void free_list(my_list *the_list){
-    my_list *current = (go_end(the_list))->prev;
-    while(current->prev != NULL){
-        free_node(current->next);
-        current = current->prev;
+    if(go_end(the_list)->prev != NULL){
+        my_list *current = (go_end(the_list))->prev;
+        while(current->prev != NULL){
+            free_node(current->next);
+            current = current->prev;
+        }
+        free_node(current);
+    }else{
+        free_node(the_list);
     }
-    free_node(current);
 }
+//changes the value that is in the node given
 void change_value(my_list *the_node, int value){
     the_node->value = value;
     the_node->added_value = true;
 }
+//prints the values that the list has
 void print_list(my_list *list){
     my_list *current = list;
     if(current->added_value){
@@ -55,6 +65,7 @@ void print_list(my_list *list){
         }
     }
 }
+//adds a value to the end
 void append_list(my_list *the_list,int value){
     my_list *current = go_end(the_list);
     if(current->added_value){
@@ -67,6 +78,7 @@ void append_list(my_list *the_list,int value){
         change_value(current,value);
     }
 }
+//returns the node that is in place given
 my_list *go_value(my_list *list, int place){
     my_list *current = list;
     int i = 0;
@@ -80,6 +92,7 @@ my_list *go_value(my_list *list, int place){
     }
     return current;
 }
+//inserts a value to the list. cant add a value to end.
 void insert_list(my_list *list, int value, int place){
     my_list *current = go_value(list, place);
 
@@ -102,7 +115,24 @@ void insert_list(my_list *list, int value, int place){
 
     }
 }
-
+//removes the last member of list. Doesnt work if the list contains only one value
+void pop_list(my_list *list){
+    my_list *current = go_end(list);
+    if(current->prev != NULL){
+        current->prev->next = NULL;
+        current->value = 0;
+        current->next = current->prev = NULL;
+        current->added_value = false;
+        free_node(current);
+    }else{
+        printf("The list you want to pop contains only one value which means this function will not work.\n");
+    }
+}
+/*    UPCOMING!!!!
+void slice_list(my_list *list, int place){
+    
+}
+*/
 
 
 

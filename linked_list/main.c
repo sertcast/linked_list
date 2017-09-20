@@ -9,14 +9,15 @@
 #include "linked_list.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
     my_list *list = create_list();
     append_list(list, 2);
     append_list(list, 4);
     append_list(list, 5);
     append_list(list, 6);
-    insert_list(list, 1, 4);
+    append_list(list, 7);
+    pop_list(list);
     print_list(list);
+    free_list(list);
     
     return 0;
 }
