@@ -23,7 +23,7 @@ struct my_list {
 };
 typedef struct my_list my_list;
 
-my_list *create_list();
+my_list *create_list(void);
 void print_list(my_list *list);
 void change_value(my_list *the_node, int value);
 void append_list(my_list *the_list,int value);
@@ -31,5 +31,5 @@ my_list *go_value(my_list *list, int place);
 void insert_list(my_list *list, int value, int place);
 void free_list(my_list *the_list);
 void pop_list(my_list *list);
-
+void slice_list(my_list *list, int place);
 #endif /* linked_list_h */

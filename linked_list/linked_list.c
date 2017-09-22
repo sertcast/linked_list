@@ -28,6 +28,7 @@ my_list *go_end(my_list *the_list){
     }
     return current;
 }
+
 //removes the node from memory
 void free_node(my_list *the_node){
     the_node->next = NULL;
@@ -85,10 +86,11 @@ my_list *go_value(my_list *list, int place){
     for(i = 0; i < place; i++){
         if(current->next != NULL){
             current = current->next;
-        }else{
-            printf("There is no value in the place you want.\n");
+        }else if(i < place){
+            printf("There is no value in the place you want\n");
             exit(1);
         }
+            
     }
     return current;
 }
@@ -115,40 +117,37 @@ void insert_list(my_list *list, int value, int place){
 
     }
 }
-//removes the last member of list. Doesnt work if the list contains only one value
+//removes the last member of list. doesnt work if the list contains only one value
 void pop_list(my_list *list){
     my_list *current = go_end(list);
     if(current->prev != NULL){
         current->prev->next = NULL;
-        current->value = 0;
-        current->next = current->prev = NULL;
-        current->added_value = false;
         free_node(current);
     }else{
         printf("The list you want to pop contains only one value which means this function will not work.\n");
     }
 }
-/*    UPCOMING!!!!
+//slices a list. doesnt work if the list contains only one value
 void slice_list(my_list *list, int place){
-    
+    my_list *del_node = go_value(list, place);
+    if(del_node->next != NULL){
+        if(del_node->prev != NULL){
+            del_node->prev->next = del_node->next;
+            del_node->next->prev = del_node->prev;
+            free_node(del_node);
+        }else{
+            my_list *current = list;
+            while (current->next!= NULL) {
+                current->value = current->next->value;
+                current = current->next;
+            }
+            current->prev->next = NULL;
+            free_node(current);
+        }
+    }else if(del_node->prev != NULL){
+        pop_list(list);
+    }else{
+        printf("You can not slice a list if the list has only one value.");
+        exit(1);
+    }
 }
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
