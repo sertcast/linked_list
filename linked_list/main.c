@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
     append_list(list, 6);
     append_list(list, 7);
     append_list(list, 8);
-    slice_list(list, 5);
+    delete_list(list, 5);
     print_list(list);
     free_list(list);
     

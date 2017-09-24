@@ -30,6 +30,6 @@ void append_list(my_list *the_list,int value);
 my_list *go_value(my_list *list, int place);
 void insert_list(my_list *list, int value, int place);
 void free_list(my_list *the_list);
-void pop_list(my_list *list);
-void slice_list(my_list *list, int place);
+int pop_list(my_list *list);
+void delete_list(my_list *list, int place);
 #endif /* linked_list_h */

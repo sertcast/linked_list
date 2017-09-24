@@ -118,17 +118,21 @@ void insert_list(my_list *list, int value, int place){
     }
 }
 //removes the last member of list. doesnt work if the list contains only one value
-void pop_list(my_list *list){
+int pop_list(my_list *list){
     my_list *current = go_end(list);
     if(current->prev != NULL){
         current->prev->next = NULL;
+        int value = current->value;
         free_node(current);
+        return value;
+        
     }else{
         printf("The list you want to pop contains only one value which means this function will not work.\n");
+        return 0;
     }
 }
-//slices a list. doesnt work if the list contains only one value
-void slice_list(my_list *list, int place){
+//deletes a value. doesnt work if the list contains only one value
+void delete_list(my_list *list, int place){
     my_list *del_node = go_value(list, place);
     if(del_node->next != NULL){
         if(del_node->prev != NULL){
@@ -147,7 +151,7 @@ void slice_list(my_list *list, int place){
     }else if(del_node->prev != NULL){
         pop_list(list);
     }else{
-        printf("You can not slice a list if the list has only one value.");
+        printf("You can not delete a value if the list has only one value.");
         exit(1);
     }
 }
