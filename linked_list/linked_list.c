@@ -164,3 +164,23 @@ int length_list(my_list* list){
     }while(current->next != NULL);
     return counter;
 }
+//switches two value
+void switch_list(my_list *list, int first_place, int second_place){
+    if(first_place != second_place){
+        my_list *first_node = go_value(list, first_place);
+        my_list *second_node = go_value(list, second_place);
+        int first_value = first_node->value, second_value = second_node->value;
+        
+        first_node->value = second_value;
+        second_node->value = first_value;
+        
+    }
+}
+//copies a list to another
+void cplist(my_list *list, my_list*cplist){
+    my_list *current_list = list;
+    while(current_list->next != NULL){
+        append_list(cplist, current_list->value);
+        current_list = current_list->next;
+    }
+}

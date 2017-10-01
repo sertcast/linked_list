@@ -33,4 +33,6 @@ void free_list(my_list *the_list);
 int pop_list(my_list *list);
 void delete_list(my_list *list, int place);
 int length_list(my_list* list);
+void switch_list(my_list *list, int first_place, int second_place);
+void cplist(my_list *list, my_list *cplist);
 #endif /* linked_list_h */
