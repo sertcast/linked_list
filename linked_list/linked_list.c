@@ -155,3 +155,12 @@ void delete_list(my_list *list, int place){
         exit(1);
     }
 }
+//returns length of a list
+int length_list(my_list* list){
+    int counter = 0;
+    my_list *current = list;
+    do{
+        counter++;
+    }while(current->next != NULL);
+    return counter;
+}

@@ -32,4 +32,5 @@ void insert_list(my_list *list, int value, int place);
 void free_list(my_list *the_list);
 int pop_list(my_list *list);
 void delete_list(my_list *list, int place);
+int length_list(my_list* list);
 #endif /* linked_list_h */
